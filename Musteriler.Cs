@@ -95,7 +95,7 @@ namespace urunotomasyon
             if (TxtOdaNo.Text == "1")
             {
                 baglanti.Open();
-                SqlCommand komut = new SqlCommand("delete from Oda1  ", baglanti);
+                SqlCommand komut = new SqlCommand("delete from Oda1  ", baglanti); // Odadan çıkışını yapıyoruz
                 komut.ExecuteNonQuery();
 
                 baglanti.Close();
