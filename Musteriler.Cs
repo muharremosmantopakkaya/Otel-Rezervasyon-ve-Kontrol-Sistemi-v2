@@ -87,7 +87,7 @@ namespace urunotomasyon
         {
             AnaSayfa fr = new AnaSayfa(); // Obje oluştuyoruz. 
             fr.Show(); // Anasayfayı ekrana gösterir.
-            this.Hide();  // gizler. Menüler arası geçişte görünmesini istemiyorsak
+            this.Hide();  // gizler. Menüler arası geçişte görünmesini istemiyorsak thisHide komutu
         }
 
         private void BtnSil_Click(object sender, EventArgs e)
