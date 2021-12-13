@@ -15,10 +15,11 @@ namespace urunotomasyon
 
         private void YeniMusteri_Load(object sender, EventArgs e)
         {
+            DtpCikis.Enabled = false;
             //ODA 1 
             baglanti.Open(); // bağlantı açılır
             SqlCommand komut1 = new SqlCommand("select * from Oda1", baglanti); // Oda1 den seçilir.
-            SqlDataReader oku1 = komut1.ExecuteReader(); // sql deki veriyi okur (  ExecuteReader= parametreleri okur )
+            SqlDataReader oku1 = komut1.ExecuteReader(); // sql deki veriyi okur (  ExecuteReader= parametreleri okur )  //sqldatareader=sınıf oku1=obje
 
             while (oku1.Read())
             {
@@ -211,11 +212,11 @@ namespace urunotomasyon
         {
             TxtOdaNo.Text = "1"; // textboxa 1 değerini atar.
 
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("insert into Oda1 (Ad,Soyad) values ('" + TxtAd.Text + "','" + TxtSoyad.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-
+            baglanti.Open(); //SqlCommand, T-Sql sorguları ile veritabanı üzerinde sorgulama, ekleme, güncelleme, silme işlemlerini yapmak için kullanılmaktadır. System.Data.SqlClient namespace' i altında bulunmaktadır.
+            SqlCommand komut = new SqlCommand("insert into Oda1 (Ad,Soyad) values ('" + TxtAd.Text + "','" + TxtSoyad.Text + "')", baglanti); // Oda1 tablosuna yeni kayıt(veri) eklemek için insert into komutu
+            komut.ExecuteNonQuery();  //SQL sorgusu sonucunda bir dönüş beklenmiyorsa o zaman ExecuteNonQuery kullanılmalıdır. Örneğin silme veri ekleme gibi işlemlerde SQL sunucudan bir dönüş beklemeyiz.
+            baglanti.Close();         // SQL'den veri çekmeyeceksek o zaman ExecuteNonQuery uygundur.
+                                      //executenonquery Bu metod geriye int olarak update, insert, delete olaylarından etkilenen satır sayısı döndürüyor.
         }
 
         private void BtOda2_Click(object sender, EventArgs e)
@@ -223,8 +224,8 @@ namespace urunotomasyon
             TxtOdaNo.Text = "2";
             baglanti.Open();
             SqlCommand komut = new SqlCommand("insert into Oda2 (Ad,Soyad) values ('" + TxtAd.Text + "','" + TxtSoyad.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            komut.ExecuteNonQuery();    //ExecuteNonQuery: Insert, update, delete işlemlerinde kullanılmaktadır. İşlem sonucuna göre geriye int tipinde değer döndürmektedir.
+            baglanti.Close();           //ExecuteReader: Birden fazla satır sonucu döndüren sorgular için kullanılmaktadır. Geriye SqlDataReader tipinde veri döndürmektedir.
         }
 
         private void BtOda3_Click(object sender, EventArgs e)
@@ -357,6 +358,8 @@ namespace urunotomasyon
 
         private void DtpCikis_ValueChanged_1(object sender, EventArgs e)
         {
+
+
             int ucret;
             DateTime kucuktarih = Convert.ToDateTime(DtpGiris.Text);  // datetime pickerdaki değerleri alacağız. 
             DateTime buyuktarih = Convert.ToDateTime(DtpCikis.Text);  //datetime pickerdaki değerleri alacağız.
@@ -393,7 +396,8 @@ namespace urunotomasyon
 
         private void DtpGiris_ValueChanged(object sender, EventArgs e)
         {
-
+            DtpCikis.Enabled = true;
+            DtpCikis.MinDate = DtpGiris.Value; 
         }
     }
 }

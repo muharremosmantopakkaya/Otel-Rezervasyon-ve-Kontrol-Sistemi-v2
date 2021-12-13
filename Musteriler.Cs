@@ -87,7 +87,7 @@ namespace urunotomasyon
         {
             AnaSayfa fr = new AnaSayfa(); // Obje oluştuyoruz. 
             fr.Show(); // Anasayfayı ekrana gösterir.
-            this.Hide();  // gizler. Menüler arası geçişte görünmesini istemiyorsak thisHide komutu
+            this.Hide();  // gizler. Menüler arası geçişte görünmesini istemiyorsak
         }
 
         private void BtnSil_Click(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace urunotomasyon
             if (TxtOdaNo.Text == "1")
             {
                 baglanti.Open();
-                SqlCommand komut = new SqlCommand("delete from Oda1  ", baglanti); // Odadan çıkışını yapıyoruz
+                SqlCommand komut = new SqlCommand("delete from Oda1  ", baglanti);
                 komut.ExecuteNonQuery();
 
                 baglanti.Close();
@@ -253,6 +253,11 @@ namespace urunotomasyon
             }
 
             baglanti.Close();
+        }
+
+        private void bunifuPictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
